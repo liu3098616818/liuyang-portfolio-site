@@ -120,7 +120,7 @@ export const skills = [
 ]
 
 // 精选作品 —— 对应 D:\作品集\videos 下的文件
-// 09 为网页端新增的占位模块（custom: true），视频尚未提供，回放「待上传」占位图
+// 09 原为网页端新增的占位模块，已于 2026-09-26 补上「追踪飞行」视频与封面，不再是占位
 export const works = [
   {
     slug: 'drama-guzhuang',
@@ -205,7 +205,9 @@ export const works = [
   {
     slug: 'custom-1790234885639',
     no: '09',
-    custom: true,
+    // custom 省略：该标记表示「在网页端临时新增、还没有转码文件」，会让 Works.jsx
+    // 强制回落到灰占位图。本作品已在源码里配好 preview + poster，必须去掉此标记，
+    // 否则封面永远是黑的、hover 也不播。（editor 新增作品时仍会自动带此标记）
     title: '追踪飞行',
     titleEn: 'TRACKING SHOT',
     cat: '剧情与舞蹈',
