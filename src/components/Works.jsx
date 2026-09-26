@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { works as defaultWorks, categories } from '../data/site.js'
+import { works as defaultWorks, categories, mediaUrl } from '../data/site.js'
 import { useReveal } from '../hooks/useSite.js'
 import { Editable, EditableVideo, useMediaSrc } from '../editor/Editable.jsx'
 import { useEditor } from '../editor/EditorContext.jsx'
@@ -64,8 +64,8 @@ function WorkCard({ w, onOpen }) {
   const { active, overrides } = useEditor()
 
   // 网页端新增的作品没有现成的转码文件，回落到「待上传」占位图
-  const fbVideo = w.custom ? '' : `/media/preview/${w.slug}.mp4`
-  const fbPoster = w.custom ? '/media/no-media.jpg' : `/media/poster/${w.slug}.jpg`
+  const fbVideo = w.custom ? '' : mediaUrl(`preview/${w.slug}.mp4`)
+  const fbPoster = w.custom ? mediaUrl('no-media.jpg') : mediaUrl(`poster/${w.slug}.jpg`)
   const videoSrc = useMediaSrc(`work.${w.slug}.video`, fbVideo)
   const posterSrc = useMediaSrc(`work.${w.slug}.poster`, fbPoster)
   const hasVideo = !!(videoSrc && (overrides.media?.[`work.${w.slug}.video`] || !w.custom))

@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { useEditor } from '../editor/EditorContext.jsx'
 import { useMediaSrc } from '../editor/Editable.jsx'
+import { mediaUrl } from '../data/site.js'
 
 export default function Lightbox({ work, onClose }) {
   const { getText } = useEditor()
-  const fbVideo = work.custom ? '' : `/media/preview/${work.slug}.mp4`
-  const fbPoster = work.custom ? '/media/no-media.jpg' : `/media/poster/${work.slug}.jpg`
+  const fbVideo = work.custom ? '' : mediaUrl(`preview/${work.slug}.mp4`)
+  const fbPoster = work.custom ? mediaUrl('no-media.jpg') : mediaUrl(`poster/${work.slug}.jpg`)
   const videoSrc = useMediaSrc(`work.${work.slug}.video`, fbVideo)
   const posterSrc = useMediaSrc(`work.${work.slug}.poster`, fbPoster)
 

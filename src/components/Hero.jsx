@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { profile, stats } from '../data/site.js'
+import { profile, stats, mediaUrl } from '../data/site.js'
 import { Editable, EditSlotButton, useMediaSrc } from '../editor/Editable.jsx'
 
 export default function Hero() {
   const vid = useRef(null)
   // 文件名带版本号：换背景视频时改这里的版本号，旧尺寸/旧内容的同名文件不会被
   // 浏览器或 CDN 缓存住（同名 URL 不变时，对方可能一直看到上一版）
-  const heroVideo = useMediaSrc('hero.video', '/media/hero-bg-v2.mp4')
+  const heroVideo = useMediaSrc('hero.video', mediaUrl('hero-bg-v2.mp4'))
 
   useEffect(() => {
     // 某些浏览器需要显式 play 才能自动播放静音视频
@@ -19,7 +19,7 @@ export default function Hero() {
         ref={vid}
         className="hero-video"
         src={heroVideo}
-        poster="/media/poster/drama-guzhuang.jpg"
+        poster={mediaUrl('poster/drama-guzhuang.jpg')}
         autoPlay
         muted
         loop

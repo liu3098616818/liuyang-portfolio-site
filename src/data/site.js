@@ -1,6 +1,12 @@
 // 站点全部内容数据 —— 集中在此，改文案只动这一个文件
 // 视频素材来自 D:\作品集\videos，已转码至 /media/
 
+// 媒体路径必须带 BASE_URL，不能直接写 '/media/xxx'。
+// 原因：GitHub Pages 是子路径部署（https://<user>.github.io/<repo>/），
+// 绝对路径 '/media/xxx' 会指向域名根目录，全部 404。
+// BASE_URL 由 vite.config.js 的 base 决定（这里是 './'），拼接后即为当前目录下的相对路径。
+export const mediaUrl = (p) => `${import.meta.env.BASE_URL}media/${p}`
+
 export const profile = {
   name: '刘杨',
   enName: 'LIU YANG',
@@ -203,7 +209,7 @@ export const works = [
     year: '2026',
     note: '',
     src: '',
-    poster: '/media/no-media.jpg',
+    poster: mediaUrl('no-media.jpg'),
   },
   {
     slug: 'fashion',

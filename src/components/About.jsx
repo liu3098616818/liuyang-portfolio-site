@@ -1,4 +1,4 @@
-import { profile, stats, timeline } from '../data/site.js'
+import { profile, stats, timeline, mediaUrl } from '../data/site.js'
 import { useReveal } from '../hooks/useSite.js'
 import { Editable, EditableImage } from '../editor/Editable.jsx'
 import { useEditor } from '../editor/EditorContext.jsx'
@@ -45,7 +45,7 @@ export default function About() {
             <div className="portrait-frame">
               <span className="portrait-no">01</span>
               <div className="portrait-media">
-                <EditableImage k="portrait" src="/media/portrait.jpg" alt="个人照片" />
+                <EditableImage k="portrait" src={mediaUrl('portrait.jpg')} alt="个人照片" />
                 <span className="portrait-tag">PORTRAIT</span>
               </div>
             </div>
