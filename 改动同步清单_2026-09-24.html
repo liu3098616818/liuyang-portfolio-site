@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这一版改动已被写进源码 · 对照清单</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #07060A; color: #EDEDED;
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    line-height: 1.75; padding: 48px 28px 80px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 {
+    font-size: 40px; line-height: 1.15; letter-spacing: -0.5px;
+    margin-bottom: 10px; font-weight: 900;
+  }
+  h1 em { font-style: normal; color: #FF1E8E; }
+  .sub { color: #7A7580; font-size: 13px; letter-spacing: .12em; margin-bottom: 34px; }
+  .verdict {
+    border: 1px solid #2A2430; border-left: 3px solid #FF1E8E;
+    background: #0D0B11; padding: 16px 20px; margin-bottom: 36px;
+    font-size: 14px;
+  }
+  .verdict b { color: #FF1E8E; }
+  h2 {
+    font-size: 19px; margin: 40px 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid #241F29; letter-spacing: .02em;
+  }
+  h2:first-of-type { margin-top: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #1C181F; vertical-align: top; }
+  th { color: #8A8490; font-weight: 600; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; }
+  td.k { color: #FF5FAE; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; white-space: nowrap; }
+  td.g { color: #6ED6A8; white-space: nowrap; }
+  td.g::before { content: "✓ "; }
+  .card { background: #0C0A0F; border: 1px solid #1E1A23; padding: 16px 18px; margin-bottom: 12px; }
+  .card h3 { font-size: 14px; color: #FF1E8E; margin-bottom: 8px; font-weight: 700; }
+  .card p { font-size: 13.5px; color: #B9B3BF; }
+  code {
+    background: #17141B; padding: 1.5px 6px; border-radius: 3px;
+    font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: #FFB3D8;
+  }
+  pre {
+    background: #0C0A0F; border: 1px solid #1E1A23; padding: 14px 16px;
+    overflow-x: auto; font-family: ui-monospace, Consolas, monospace;
+    font-size: 12.5px; line-height: 1.6; color: #CFC8D6; margin: 8px 0 0;
+  }
+  .nl { color: #6ED6A8; font-weight: 700; }
+  .note { font-size: 12.5px; color: #6E6876; margin-top: 8px; }
+  ol { padding-left: 20px; font-size: 13.5px; color: #B9B3BF; }
+  ol li { margin-bottom: 7px; }
+  .foot { margin-top: 44px; padding-top: 18px; border-top: 1px solid #1C181F; font-size: 12.5px; color: #6E6876; }
+  .foot a { color: #FF5FAE; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>这一版改动 <em>已经写进源码</em></h1>
+  <div class="sub">2026-09-24 · 第 9 次同步 · 现在谁打开都是这个版本</div>
+
+  <div class="verdict">
+    <b>结论：全部生效。</b>我把你那一版改动用无头浏览器在
+    「访客模式 + 清空浏览器存储」下逐条核对过 —— 也就是说，
+    <b>不再依赖你自己浏览器里的缓存，任何人打开链接看到的都是你改后的样子。</b>
+    线上资源 hash 与本地构建产物完全一致（<code>index-B23wizhF.js</code> /
+    <code>index-8gFzEdhC.css</code>）。
+  </div>
+
+  <h2>一、文字换行（写死成默认换行）</h2>
+  <table>
+    <thead><tr><th>位置</th><th>改动</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="k">profile.intro[1]</td><td>「…4 大内容矩阵，<span class="nl">↵</span>策划发布 400+ 条…」中间断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">about.desc</td><td>「…涨粉写文案写内容的盒子。<span class="nl">↵</span>下面是我…」断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">strengths.desc</td><td>「…能推到收入。<span class="nl">↵</span>四件事撑起了…」断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">st.001.desc</td><td>「…一条链路自己能跑完。<span class="nl">↵</span>累计参与并策划…」断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">st.003.desc</td><td>「…缩短选题与制作周期，<span class="nl">↵</span>提升短视频全流程…」断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">st.004.desc</td><td>「…61w → 112.7w，<span class="nl">↵</span>搭建私域—转介绍链路…」断行</td><td class="g">已生效</td></tr>
+      <tr><td class="k">contact.sub</td><td>「…串起来的人，<span class="nl">↵</span>或者只是想聊聊…」断行</td><td class="g">已生效</td></tr>
+    </tbody>
+  </table>
+
+  <h2>二、文案与大小写</h2>
+  <table>
+    <thead><tr><th>位置</th><th>改前 → 改后</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="k">contact.titleEn</td><td>Let's Talk → <b>LET'S TALK</b></td><td class="g">已生效</td></tr>
+      <tr><td class="k">about.en</td><td>About — Director… → <b>ABOUT — DIRECTOR &amp; NEW MEDIA</b></td><td class="g">已生效</td></tr>
+      <tr><td class="k">hero.kicker</td><td>加大写 → <b>AVAILABLE FOR WORK — 北京 / 2004.04</b></td><td class="g">已生效</td></tr>
+      <tr><td class="k">skills 列表</td><td>删除「秘塔」</td><td class="g">已生效</td></tr>
+    </tbody>
+  </table>
+
+  <h2>三、精选项目：新增第 9 位模块</h2>
+  <div class="card">
+    <h3>NO.09 待加入视频模块（titleEn「123」）</h3>
+    <p>已插入到第 9 位，原 09–15 整体后移成 <b>10–16</b>，编号在页面左上角已重排完毕。
+    站点现在共 <b>16 个作品模块</b>，编号 NO.01 → NO.16 连续无缺。</p>
+    <p class="note">这个模块目前回落到「待上传」占位图。你把视频文件给我，我转码后就能填上。</p>
+  </div>
+
+  <h2>四、字号 / 位置基线（新增 baseStyles）</h2>
+  <p style="font-size:13.5px;color:#B9B3BF">之前你的字号和位移只存在浏览器里，换台设备就没了。现在它们已经变成源码里的默认基线，落点是 <code>src/data/site.js</code> 的 <code>export const baseStyles</code>：</p>
+  <pre>export const baseStyles = {
+  'stat.0.unit':  { fontSize: '30px' },
+  'stat.1.unit':  { fontSize: '30px' },
+  'stat.2.unit':  { fontSize: '29px' },
+  'stat.0.cn':    { fontSize: '13px' },
+  'contact.TEL.value':     { fontSize: '24px' },
+  'contact.MAIL.value':    { fontSize: '24px' },
+  'contact.DOUYIN.value':  { fontSize: '24px' },
+  'contact.city':          { fontSize: '24px' },
+  'contact.based':         { fontSize: '24px' },
+  'hero.name':       { dx: 17,  dy: -48 },
+  'hero.kicker':     { dx: -3,  dy: -42 },
+  'hero.stat0.num':  { dx: 0,   dy: 40  },
+  'hero.stat1.num':  { dx: 0,   dy: 39  },
+  'hero.stat2.num':  { dx: -1,  dy: 37  },
+  'about.title':     { dx: 0,   dy: 0   },
+  'about.en':        { dx: 0,   dy: 9   },
+}</pre>
+  <p class="note">优先级：<code>overrides.style[key] || baseStyles[key] || null</code>。
+  你在网页上再调会盖住基线；把改动还原掉，就回到这份基线。</p>
+
+  <h2>五、核对结果一览</h2>
+  <table>
+    <thead><tr><th>检查项</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td>换行文案 7 处（访客态截图 / DOM 读行数）</td><td class="g">全部两行以上</td></tr>
+      <tr><td>LET'S TALK / ABOUT — DIRECTOR &amp; NEW MEDIA</td><td class="g">文字正确</td></tr>
+      <tr><td>NO.01 – NO.16 连续编号</td><td class="g">16/16</td></tr>
+      <tr><td>第 9 位「待加入视频模块」存在</td><td class="g">存在</td></tr>
+      <tr><td>技能列表含「摄影基础」、不含「秘塔」</td><td class="g">正确</td></tr>
+      <tr><td>16 条字号 / 位移基线逐条比对</td><td class="g">全部命中</td></tr>
+      <tr><td>JS 运行时报错</td><td class="g">无</td></tr>
+      <tr><td>线上 hash 与本地 dist 一致</td><td class="g">一致</td></tr>
+    </tbody>
+  </table>
+
+  <h2>六、两点说明</h2>
+  <div class="card">
+    <h3>1. 无头浏览器里那 11 个「请求失败」是正常的</h3>
+    <p>日志里那些 <code>/media/preview/*.mp4</code> 的 <code>net::ERR_ABORTED</code>，
+    是因为这些悬停预览视频设了 <code>preload="none"</code> —— 只有鼠标真的悬停上去才去加载。
+    自动化测试里没有 hover，所以预取被中断。逐个用 curl 探测，全部返回 200，视频本身没问题。</p>
+  </div>
+  <div class="card">
+    <h3>2. 有一处你的调整其实没落在你以为的地方</h3>
+    <p>你调的那个 <code>stat.0.num</code>（数字「480」）的位移，在代码里对应的是
+    <b>02「关于我」里的统计卡</b>，不是首页 Hero 区那三个大数字。
+    首页 Hero 的数字用的是另一套 key（<code>hero.stat0/1/2.num</code>），
+    那一组位移<b>这次没有被固化</b>（JSON 里没有对应记录）。</p>
+    <p class="note">如果首页 Hero 那三个数字也需要下移，你说一声，我调一下数字（现在看起来是相对位置没变）。</p>
+  </div>
+
+  <div class="foot">
+    线上地址：<a href="https://liuyang-portfolio.app.workbuddy.host/" target="_blank">https://liuyang-portfolio.app.workbuddy.host/</a><br>
+    源码位置：<code>D:\作品集网站</code>　·　改动集中在 <code>src/data/site.js</code>
+  </div>
+
+</div>
+</body>
+</html>

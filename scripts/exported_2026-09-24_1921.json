@@ -1,0 +1,252 @@
+{
+  "_app": "刘杨作品集 · 网页修改器",
+  "_exportedAt": "2026-09-24T11:21:00.803Z",
+  "_notice": "文字改动、字号位置、作品结构可直接据此同步；上传的图片/视频本体不在此文件内，需另行提供原文件。",
+  "text": {
+    "strengths.desc": "不是「会剪视频」，是能把一条内容从想法推到数据、再推到收入。\n 四件事撑起了我这几年做的事情。",
+    "contact.sub": "如果你在找能把选题、拍摄、剪辑、运营串起来的人，\n或者只是想聊聊账号怎么做起来 —— 直接联系我。",
+    "contact.titleEn": "LET'S TALK",
+    "about.intro.1": "在【范爸爸和范妈妈】这个家庭亲子教育 IP 里，我把选题重构成 4 大内容矩阵，\n策划发布 400+ 条，运营期账号粉丝从 61w 涨到 112.7w，单条最高播放 720 万、获赞 27.9 万。",
+    "about.desc": "编导出身的新媒体运营，做过实习拍剪，也扛过百万粉账号的内容盘子。\n下面是我做过的事、跑出来的数，以及能联系到我的方式。",
+    "hero.kicker": "AVAILABLE FOR WORK — 北京 / 2004.04",
+    "hero.enName": "LIU YANG",
+    "hero.stat0.unit": "+",
+    "about.en": "ABOUT — DIRECTOR & NEW MEDIA",
+    "st.001.desc": "拍摄执行、剪辑成片、脚本策划、文案选题、账号发布到数据复盘，一条链路自己能跑完。\n累计参与并策划产出短视频约 480+ 条。",
+    "st.003.desc": "熟练运用 AI 工具辅助脚本构思、文案初稿、素材生成与字幕处理，缩短选题与制作周期，\n提升短视频全流程产出效率。",
+    "st.004.desc": "不是只做内容，是把内容接到增长和收入上。运营期账号粉丝 61w → 112.7w，\n搭建私域—转介绍链路，月均沉淀私域 200-250 个。",
+    "skills.list": "剪映\n达芬奇调色\nPhotoshop\nIllustrator\nChatGPT\nWorkBuddy\nLibTV\n视频封面设计\n账号视觉体系\n摄影基础\n数字人制作"
+  },
+  "style": {
+    "stat.0.unit": {
+      "fontSize": "30px"
+    },
+    "stat.1.unit": {
+      "fontSize": "30px"
+    },
+    "stat.2.unit": {
+      "fontSize": "29px"
+    },
+    "stat.0.cn": {
+      "fontSize": "13px"
+    },
+    "contact.TEL.value": {
+      "fontSize": "24px"
+    },
+    "contact.MAIL.value": {
+      "fontSize": "24px"
+    },
+    "contact.DOUYIN.value": {
+      "fontSize": "24px"
+    },
+    "contact.city": {
+      "fontSize": "24px"
+    },
+    "contact.based": {
+      "fontSize": "24px"
+    },
+    "hero.name": {
+      "dx": 17,
+      "dy": -48
+    },
+    "hero.kicker": {
+      "dx": -3,
+      "dy": -42
+    },
+    "hero.stat0.num": {
+      "dx": 0,
+      "dy": 40
+    },
+    "hero.stat1.num": {
+      "dx": 0,
+      "dy": 39
+    },
+    "hero.stat2.num": {
+      "dx": -1,
+      "dy": 37
+    },
+    "about.title": {
+      "dx": 0,
+      "dy": 0
+    },
+    "about.en": {
+      "dx": 0,
+      "dy": 9
+    }
+  },
+  "works": [
+    {
+      "slug": "drama-guzhuang",
+      "no": "01",
+      "title": "9.23 古装剧情",
+      "titleEn": "PERIOD DRAMA",
+      "cat": "剧情与舞蹈",
+      "vertical": false,
+      "year": "2025",
+      "note": "古装剧情短片 · 编导 + 剪辑"
+    },
+    {
+      "slug": "dance-dunhuang",
+      "no": "02",
+      "title": "敦煌舞",
+      "titleEn": "DUNHUANG DANCE",
+      "cat": "剧情与舞蹈",
+      "vertical": false,
+      "year": "2025",
+      "note": "舞蹈影像 · 氛围调色"
+    },
+    {
+      "slug": "ad-01",
+      "no": "03",
+      "title": "广告宣传 01",
+      "titleEn": "ADVERTISING",
+      "cat": "宣传与时尚",
+      "vertical": false,
+      "year": "2025",
+      "note": "广告宣传片"
+    },
+    {
+      "slug": "color-821",
+      "no": "04",
+      "title": "821 调色",
+      "titleEn": "COLOR GRADING",
+      "cat": "剪辑与调色",
+      "vertical": false,
+      "year": "2025",
+      "note": "达芬奇调色 · 影调统一"
+    },
+    {
+      "slug": "edit-03",
+      "no": "05",
+      "title": "剪辑 03",
+      "titleEn": "EDIT REEL 03",
+      "cat": "剪辑与调色",
+      "vertical": false,
+      "year": "2025",
+      "note": "快节奏剪辑"
+    },
+    {
+      "slug": "edit-01",
+      "no": "06",
+      "title": "剪辑 01",
+      "titleEn": "EDIT REEL 01",
+      "cat": "剪辑与调色",
+      "vertical": false,
+      "year": "2025",
+      "note": "商业剪辑 · 卡点节奏"
+    },
+    {
+      "slug": "edit-02",
+      "no": "07",
+      "title": "剪辑 02",
+      "titleEn": "EDIT REEL 02",
+      "cat": "剪辑与调色",
+      "vertical": false,
+      "year": "2025",
+      "note": "剪辑 + 转场设计"
+    },
+    {
+      "slug": "edit-04",
+      "no": "08",
+      "title": "剪辑 04",
+      "titleEn": "EDIT REEL 04",
+      "cat": "剪辑与调色",
+      "vertical": false,
+      "year": "2025",
+      "note": "剪辑 + 音效设计"
+    },
+    {
+      "slug": "custom-1790234885639",
+      "no": "09",
+      "custom": true,
+      "title": "待加入视频模块",
+      "titleEn": "123",
+      "cat": "剧情与舞蹈",
+      "vertical": false,
+      "year": "2026",
+      "note": ""
+    },
+    {
+      "slug": "fashion",
+      "no": "10",
+      "title": "时尚宣传",
+      "titleEn": "FASHION FILM",
+      "cat": "宣传与时尚",
+      "vertical": true,
+      "year": "2025",
+      "note": "时尚向宣传片 · 竖屏投放版"
+    },
+    {
+      "slug": "vlog-hainan",
+      "no": "11",
+      "title": "海南 VLOG",
+      "titleEn": "HAINAN VLOG",
+      "cat": "VLOG",
+      "vertical": true,
+      "year": "2025",
+      "note": "旅拍 Vlog · 拍摄 + 剪辑 + 调色"
+    },
+    {
+      "slug": "ai-marketing",
+      "no": "12",
+      "title": "智能营销成片",
+      "titleEn": "AI MARKETING",
+      "cat": "数字人与智能制作",
+      "vertical": true,
+      "year": "2025",
+      "note": "AI 辅助营销短片"
+    },
+    {
+      "slug": "marketing-02",
+      "no": "13",
+      "title": "营销成片 02",
+      "titleEn": "MARKETING 02",
+      "cat": "营销作品",
+      "vertical": true,
+      "year": "2025",
+      "note": "转化向营销短片"
+    },
+    {
+      "slug": "avatar-0919",
+      "no": "14",
+      "title": "9 月 19 日口播",
+      "titleEn": "TALKING HEAD",
+      "cat": "数字人口播剪辑",
+      "vertical": true,
+      "year": "2025",
+      "note": "口播剪辑 · 字幕包装"
+    },
+    {
+      "slug": "ai-edit",
+      "no": "15",
+      "title": "智能剪辑成片",
+      "titleEn": "AI EDITING",
+      "cat": "数字人与智能制作",
+      "vertical": true,
+      "year": "2025",
+      "note": "AI 智能剪辑流程成片"
+    },
+    {
+      "slug": "ai-avatar",
+      "no": "16",
+      "title": "数字人口播",
+      "titleEn": "AI AVATAR",
+      "cat": "数字人与智能制作",
+      "vertical": true,
+      "year": "2025",
+      "note": "数字人口播成片 · AI 制作流程"
+    }
+  ],
+  "media": [
+    {
+      "slot": "portrait",
+      "fileName": "图片+1.png",
+      "type": "image/png"
+    },
+    {
+      "slot": "hero.video",
+      "fileName": "视频节点 1.mp4",
+      "type": "video/mp4"
+    }
+  ]
+}

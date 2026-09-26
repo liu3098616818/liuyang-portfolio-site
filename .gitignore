@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-ssr
+# 本地版本回滚用的备份，32MB，不进仓库（GitHub 只放构建需要的源码与素材）
+版本快照/
+.DS_Store
+*.local
+.vite
+npm-debug.log*
+yarn-error.log*
+.env
+.env.*
+!.env.example

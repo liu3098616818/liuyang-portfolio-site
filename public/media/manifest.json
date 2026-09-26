@@ -1,0 +1,137 @@
+[
+  {
+    "slug": "vlog-hainan",
+    "title": "海南 VLOG",
+    "cat": "VLOG",
+    "vertical": true,
+    "preview": "/media/preview/vlog-hainan.mp4",
+    "poster": "/media/poster/vlog-hainan.jpg",
+    "size_mb": 2.7
+  },
+  {
+    "slug": "drama-guzhuang",
+    "title": "9.23 古装剧情",
+    "cat": "剧情与舞蹈",
+    "vertical": false,
+    "preview": "/media/preview/drama-guzhuang.mp4",
+    "poster": "/media/poster/drama-guzhuang.jpg",
+    "size_mb": 0.6
+  },
+  {
+    "slug": "dance-dunhuang",
+    "title": "敦煌舞",
+    "cat": "剧情与舞蹈",
+    "vertical": false,
+    "preview": "/media/preview/dance-dunhuang.mp4",
+    "poster": "/media/poster/dance-dunhuang.jpg",
+    "size_mb": 1.0
+  },
+  {
+    "slug": "color-821",
+    "title": "821 调色",
+    "cat": "剪辑与调色",
+    "vertical": false,
+    "preview": "/media/preview/color-821.mp4",
+    "poster": "/media/poster/color-821.jpg",
+    "size_mb": 0.7
+  },
+  {
+    "slug": "edit-01",
+    "title": "剪辑 01",
+    "cat": "剪辑与调色",
+    "vertical": false,
+    "preview": "/media/preview/edit-01.mp4",
+    "poster": "/media/poster/edit-01.jpg",
+    "size_mb": 0.9
+  },
+  {
+    "slug": "edit-02",
+    "title": "剪辑 02",
+    "cat": "剪辑与调色",
+    "vertical": false,
+    "preview": "/media/preview/edit-02.mp4",
+    "poster": "/media/poster/edit-02.jpg",
+    "size_mb": 0.7
+  },
+  {
+    "slug": "edit-03",
+    "title": "剪辑 03",
+    "cat": "剪辑与调色",
+    "vertical": false,
+    "preview": "/media/preview/edit-03.mp4",
+    "poster": "/media/poster/edit-03.jpg",
+    "size_mb": 0.9
+  },
+  {
+    "slug": "edit-04",
+    "title": "剪辑 04",
+    "cat": "剪辑与调色",
+    "vertical": false,
+    "preview": "/media/preview/edit-04.mp4",
+    "poster": "/media/poster/edit-04.jpg",
+    "size_mb": 0.8
+  },
+  {
+    "slug": "ad-01",
+    "title": "广告宣传 01",
+    "cat": "宣传与时尚",
+    "vertical": false,
+    "preview": "/media/preview/ad-01.mp4",
+    "poster": "/media/poster/ad-01.jpg",
+    "size_mb": 0.7
+  },
+  {
+    "slug": "fashion",
+    "title": "时尚宣传",
+    "cat": "宣传与时尚",
+    "vertical": true,
+    "preview": "/media/preview/fashion.mp4",
+    "poster": "/media/poster/fashion.jpg",
+    "size_mb": 2.0
+  },
+  {
+    "slug": "ai-avatar",
+    "title": "数字人口播",
+    "cat": "数字人与智能制作",
+    "vertical": true,
+    "preview": "/media/preview/ai-avatar.mp4",
+    "poster": "/media/poster/ai-avatar.jpg",
+    "size_mb": 1.4
+  },
+  {
+    "slug": "ai-edit",
+    "title": "智能剪辑成片",
+    "cat": "数字人与智能制作",
+    "vertical": true,
+    "preview": "/media/preview/ai-edit.mp4",
+    "poster": "/media/poster/ai-edit.jpg",
+    "size_mb": 1.5
+  },
+  {
+    "slug": "ai-marketing",
+    "title": "智能营销成片",
+    "cat": "数字人与智能制作",
+    "vertical": true,
+    "preview": "/media/preview/ai-marketing.mp4",
+    "poster": "/media/poster/ai-marketing.jpg",
+    "size_mb": 1.4
+  },
+  {
+    "slug": "avatar-0919",
+    "title": "9 月 19 日口播",
+    "cat": "数字人口播剪辑",
+    "vertical": true,
+    "preview": "/media/preview/avatar-0919.mp4",
+    "poster": "/media/poster/avatar-0919.jpg",
+    "size_mb": 1.1
+  },
+  {
+    "slug": "marketing-02",
+    "title": "营销成片 02",
+    "cat": "营销作品",
+    "vertical": true,
+    "preview": "/media/preview/marketing-02.mp4",
+    "poster": "/media/poster/marketing-02.jpg",
+    "size_mb": 1.8
+  }
+]

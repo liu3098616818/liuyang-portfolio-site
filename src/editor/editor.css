@@ -1,0 +1,527 @@
+/* ============================================================
+   网页修改器 —— 仅当进入编辑模式时才可见
+   ============================================================ */
+
+/* ---------- 就地编辑的文字 ---------- */
+.ed-text {
+  outline: 1px dashed rgba(255, 30, 142, 0.55);
+  outline-offset: 4px;
+  cursor: text !important;
+  border-radius: 2px;
+  /* 编辑时保留空白，回车插入的换行才能立刻看得见 */
+  white-space: pre-wrap;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+.ed-text:hover {
+  outline-color: var(--pink);
+  background: rgba(255, 30, 142, 0.08);
+}
+.ed-text:focus {
+  outline: 1.5px solid var(--pink);
+  outline-offset: 4px;
+  background: rgba(255, 30, 142, 0.14);
+}
+
+/* ---------- 图片位 ---------- */
+.ed-media {
+  position: relative;
+  display: block;
+}
+.ed-media-bar {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- 通用小按钮 ---------- */
+.ed-media-bar button,
+.ed-vbar button,
+.ed-slot button {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  padding: 8px 13px;
+  background: var(--pink);
+  color: #fff;
+  border: 1px solid var(--pink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s var(--ease);
+}
+.ed-media-bar button:hover,
+.ed-vbar button:hover,
+.ed-slot button:hover {
+  background: var(--white);
+  color: var(--ink);
+}
+.ed-media-bar button.ghost,
+.ed-vbar button.ghost,
+.ed-slot button.ghost {
+  background: rgba(7, 6, 10, 0.72);
+  border-color: var(--line);
+  color: var(--white);
+}
+.ed-media-bar button.ghost:hover,
+.ed-vbar button.ghost:hover,
+.ed-slot button.ghost:hover {
+  background: rgba(7, 6, 10, 0.92);
+  color: var(--pink);
+}
+
+/* ---------- 视频卡片上的按钮 ---------- */
+.ed-vbar {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+}
+.ed-vbar.compact {
+  bottom: 8px;
+}
+
+/* ---------- 列表式文字编辑（textarea） ---------- */
+.ed-list {
+  width: 100%;
+  background: rgba(255, 30, 142, 0.08);
+  border: 1px dashed var(--pink);
+  color: var(--white);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.9;
+  padding: 10px 12px;
+  outline: none;
+  resize: vertical;
+  cursor: text !important;
+}
+
+/* ---------- 浮动文字工具条（字号 + 拖动位置） ---------- */
+.edsb {
+  position: fixed;
+  z-index: 6200;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(9, 7, 13, 0.96);
+  border: 1px solid var(--pink);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-mono);
+  animation: edsbIn 0.16s var(--ease);
+  user-select: none;
+}
+@keyframes edsbIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+.edsb-grip {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 2px;
+  width: 26px;
+  padding: 0 4px;
+  cursor: grab;
+  border-right: 1px solid var(--line);
+}
+.edsb-grip:active {
+  cursor: grabbing;
+}
+.edsb-grip i {
+  width: 3px;
+  height: 3px;
+  background: var(--pink);
+  border-radius: 50%;
+}
+.edsb-grip:hover {
+  background: rgba(255, 30, 142, 0.16);
+}
+.edsb-pos {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--pink);
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+.edsb-tag {
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--pink);
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+.edsb-btn {
+  width: 32px;
+  height: 30px;
+  font-size: 12px;
+  color: var(--white);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s var(--ease);
+}
+.edsb-btn:hover {
+  background: var(--pink);
+  color: #fff;
+}
+.edsb-num {
+  min-width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+.edsb-reset {
+  padding: 0 10px;
+  font-family: var(--font-cn);
+  font-size: 11px;
+  color: #a8a3b0;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--line);
+  cursor: pointer;
+  transition: all 0.18s var(--ease);
+  white-space: nowrap;
+}
+.edsb-reset:hover {
+  color: var(--pink);
+}
+
+/* ============================================================
+   右侧控制面板
+   ============================================================ */
+.edp {
+  position: fixed;
+  top: 96px;
+  right: 24px;
+  z-index: 6000;
+  width: 356px;
+  max-height: calc(100vh - 130px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(9, 7, 13, 0.97);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--pink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 30, 142, 0.2);
+  font-family: var(--font-cn);
+  animation: edpIn 0.35s var(--ease);
+}
+@keyframes edpIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+.edp.folded {
+  width: 200px;
+}
+
+.edp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.edp-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.edp-title b {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.edp-title span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--pink);
+}
+.edp-actions {
+  display: flex;
+  gap: 6px;
+}
+.edp-actions button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.22s var(--ease);
+}
+.edp-actions button:hover {
+  border-color: var(--pink);
+  background: var(--pink);
+  color: #fff;
+}
+
+.edp-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.edp-tabs button {
+  flex: 1;
+  padding: 11px 8px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+  transition: all 0.22s var(--ease);
+}
+.edp-tabs button:last-child {
+  border-right: none;
+}
+.edp-tabs button:hover {
+  color: var(--white);
+}
+.edp-tabs button.on {
+  background: var(--pink);
+  color: #fff;
+  font-weight: 700;
+}
+
+.edp-body {
+  padding: 16px;
+  overflow-y: auto;
+  display: grid;
+  gap: 12px;
+}
+.edp-body::-webkit-scrollbar {
+  width: 5px;
+}
+.edp-body::-webkit-scrollbar-thumb {
+  background: var(--pink);
+}
+
+.edp-row {
+  display: flex;
+  gap: 18px;
+}
+.edp-stat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+.edp-stat b {
+  color: var(--pink);
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.edp-primary {
+  background: var(--pink);
+  color: #fff;
+  border: 1px solid var(--pink);
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.edp-primary:hover {
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* 新增作品表单 */
+.edp-form {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  padding: 14px;
+  background: rgba(255, 30, 142, 0.04);
+}
+.edp-form label {
+  display: grid;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--dim);
+}
+.edp-form label.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.edp-form input,
+.edp-form select,
+.edp-form textarea {
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--font-cn);
+  font-size: 13px;
+  padding: 9px 10px;
+  outline: none;
+  cursor: text !important;
+}
+.edp-form input:focus,
+.edp-form select:focus {
+  border-color: var(--pink);
+}
+.edp-form select {
+  cursor: pointer;
+}
+
+/* 作品列表 */
+.edp-list {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+.edp-list li {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  background: rgba(246, 244, 241, 0.02);
+}
+.edp-list .no {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--pink);
+}
+.edp-list .t {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.edp-list .t em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--dim);
+  margin-left: 8px;
+}
+.edp-list .ops {
+  display: flex;
+  gap: 4px;
+}
+.edp-list .ops button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+.edp-list .ops button:hover:not(:disabled) {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+.edp-list .ops button:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+.edp-list .ops button.danger:hover {
+  background: #ff2d2d;
+  border-color: #ff2d2d;
+}
+
+/* 说明页 */
+.edp-body.help p {
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: #a8a3b0;
+}
+.edp-body.help p b {
+  color: var(--white);
+}
+.edp-btns {
+  display: grid;
+  gap: 8px;
+  margin-top: 6px;
+}
+.edp-btns button {
+  padding: 11px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--white);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.edp-btns button:hover {
+  border-color: var(--pink);
+  background: rgba(255, 30, 142, 0.12);
+}
+.edp-btns button.danger:hover {
+  background: rgba(255, 45, 45, 0.16);
+  border-color: #ff2d2d;
+  color: #ff6b6b;
+}
+.edp-fallback {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--pink);
+  padding: 12px;
+  background: rgba(255, 30, 142, 0.06);
+}
+.edp-fallback-box {
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 10px;
+  outline: none;
+  resize: vertical;
+}
+.edp-fallback button {
+  padding: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--white);
+  font-size: 12px;
+  cursor: pointer;
+}
+.edp-fallback button:hover {
+  border-color: var(--pink);
+  background: rgba(255, 30, 142, 0.12);
+}
+
+.edp-tip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+  border-left: 2px solid var(--pink);
+  padding-left: 10px;
+}
