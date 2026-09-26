@@ -5,7 +5,11 @@
 // 原因：GitHub Pages 是子路径部署（https://<user>.github.io/<repo>/），
 // 绝对路径 '/media/xxx' 会指向域名根目录，全部 404。
 // BASE_URL 由 vite.config.js 的 base 决定（这里是 './'），拼接后即为当前目录下的相对路径。
-export const mediaUrl = (p) => `${import.meta.env.BASE_URL}media/${p}`
+// 写成 `(import.meta.env && import.meta.env.BASE_URL)` 而不是 `import.meta.env?.BASE_URL`：
+// Vite 只认前一种写法并把它静态替换成 './'；同时让 node 直接跑本文件时不报错
+// （scripts/diff_export.mjs 会 import 这个文件，node 下 import.meta.env 是 undefined）
+const BASE = (import.meta.env && import.meta.env.BASE_URL) || './'
+export const mediaUrl = (p) => `${BASE}media/${p}`
 
 export const profile = {
   name: '刘杨',
@@ -97,7 +101,7 @@ export const strengths = [
     no: '003',
     title: 'AI 工具提效',
     titleEn: 'AI POWERED',
-    desc: '熟练运用 AI 工具辅助脚本构思、文案初稿、素材生成与字幕处理，缩短选题与制作周期，\n提升短视频全流程产出效率。',
+    desc: '熟练运用 AI 工具辅助脚本构思、文案初稿、素材生成与字幕处理，\n缩短选题与制作周期，提升短视频全流程产出效率。',
     tags: ['脚本构思', '文案初稿', '素材生成', '字幕处理', '数字人'],
   },
   {
@@ -202,14 +206,14 @@ export const works = [
     slug: 'custom-1790234885639',
     no: '09',
     custom: true,
-    title: '待加入视频模块',
-    titleEn: '123',
+    title: '追踪飞行',
+    titleEn: 'TRACKING SHOT',
     cat: '剧情与舞蹈',
     vertical: false,
     year: '2026',
     note: '',
-    src: '',
-    poster: mediaUrl('no-media.jpg'),
+    src: mediaUrl('preview/custom-1790234885639.mp4'),
+    poster: mediaUrl('poster/custom-1790234885639.jpg'),
   },
   {
     slug: 'fashion',

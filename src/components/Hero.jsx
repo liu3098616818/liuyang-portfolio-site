@@ -6,7 +6,7 @@ export default function Hero() {
   const vid = useRef(null)
   // 文件名带版本号：换背景视频时改这里的版本号，旧尺寸/旧内容的同名文件不会被
   // 浏览器或 CDN 缓存住（同名 URL 不变时，对方可能一直看到上一版）
-  const heroVideo = useMediaSrc('hero.video', mediaUrl('hero-bg-v2.mp4'))
+  const heroVideo = useMediaSrc('hero.video', mediaUrl('hero-bg-v3.mp4'))
 
   useEffect(() => {
     // 某些浏览器需要显式 play 才能自动播放静音视频
@@ -19,7 +19,7 @@ export default function Hero() {
         ref={vid}
         className="hero-video"
         src={heroVideo}
-        poster={mediaUrl('poster/drama-guzhuang.jpg')}
+        poster={mediaUrl('poster/dance-dunhuang.jpg')}
         autoPlay
         muted
         loop
