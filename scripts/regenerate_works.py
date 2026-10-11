@@ -28,8 +28,10 @@ SLUG_ORDER = [
     "talk-01", "talk-02", "talk-03",
     "edit-01", "edit-02", "color-01", "color-02", "color-03", "color-04",
     "feed-01", "feed-02",
-    "aigc-demo", "opera", "figure-faxiang", "drama-guzhuang", "dunhuang",
-    "avatar-talk", "vlog-hainan", "tracking",
+    # AIGC 与数字人：用户 2026-10-11 指定的排列
+    # 京剧 / 古装剧情 / 敦煌舞 / 人物法相天地 / 追踪飞行 / 海南VLOG / 数字人口播 / AIGC成片
+    "opera", "drama-guzhuang", "dunhuang", "figure-faxiang",
+    "tracking", "vlog-hainan", "avatar-talk", "aigc-demo",
     "ad-brand", "fashion", "ad-luckin", "ad-xiongan",
 ]
 

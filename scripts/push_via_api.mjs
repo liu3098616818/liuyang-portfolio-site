@@ -55,16 +55,26 @@ const api = async (path, method = 'GET', body = null) => {
   const commit = await api(`/repos/${OWNER}/${REPO}/git/commits/${baseSha}`)
   const baseTree = commit.tree.sha
 
-  // 3) 为每个文件建 blob
+  // 3) 为每个文件建 blob；已删除的文件用 sha:null 表示从 tree 里移除
   const tree = []
+  const missing = []
   for (const f of files) {
-    const content = fs.readFileSync(f, 'utf8')
+    if (!fs.existsSync(f)) {
+      // 删除：tree 条目带 sha:null 即把该路径摘掉
+      tree.push({ path: f, mode: '100644', type: 'blob', sha: null })
+      missing.push(f)
+      console.log(`  del  ${f}`)
+      continue
+    }
+    const buf = fs.readFileSync(f)
+    // 二进制（图片/视频）必须用 base64，否则会被当文本破坏
+    const isBin = /\.(jpg|jpeg|png|mp4|mov|webm|gif|webp|ico|woff2?|ttf)$/i.test(f)
     const blob = await api(`/repos/${OWNER}/${REPO}/git/blobs`, 'POST', {
-      content,
-      encoding: 'utf-8',
+      content: buf.toString(isBin ? 'base64' : 'utf-8'),
+      encoding: isBin ? 'base64' : 'utf-8',
     })
     tree.push({ path: f, mode: '100644', type: 'blob', sha: blob.sha })
-    console.log(`  blob ${f} → ${blob.sha.slice(0, 8)}`)
+    console.log(`  blob ${f} → ${blob.sha.slice(0, 8)}${isBin ? ' [bin]' : ''}`)
   }
 
   // 4) 建 tree
