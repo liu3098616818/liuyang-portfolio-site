@@ -109,7 +109,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
       let n = 0
       const tick = () => {
         if (v.duration && isFinite(v.duration)) return res({src: v.getAttribute('src'), dur: +v.duration.toFixed(1), w: v.videoWidth, h: v.videoHeight})
-        if (++n > 40) return res({src: v.getAttribute('src'), dur: null, w: v.videoWidth, h: v.videoHeight})
+        if (++n > Number(${process.env.LB_TICKS || 40})) return res({src: v.getAttribute('src'), dur: null, w: v.videoWidth, h: v.videoHeight})
         setTimeout(tick, 250)
       }
       tick()
