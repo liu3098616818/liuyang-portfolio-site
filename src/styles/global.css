@@ -1007,6 +1007,11 @@ button {
 .work-card.vertical .work-media {
   aspect-ratio: 9 / 16;
 }
+/* 加宽特写卡：占 2 列或整行时改用 21:9，
+   否则满行 16:9 会撑到近 900px 高，和上下行节奏脱节（封面是 object-fit:cover，只裁上下不拉变形） */
+.work-card.wide .work-media {
+  aspect-ratio: 21 / 9;
+}
 .work-media video,
 .work-media img {
   width: 100%;

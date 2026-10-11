@@ -4,6 +4,27 @@ import { useReveal } from '../hooks/useSite.js'
 import { Editable, EditableVideo, useMediaSrc } from '../editor/Editable.jsx'
 import { useEditor } from '../editor/EditorContext.jsx'
 
+// 需要并排成一行的三张竖屏：海南 VLOG / 数字人口播 / AIGC 成片
+// 用户要求「17 / 18 / 19 并列在一行」，编号不变，所以在网格里给它们腾位置
+const ROW_TRIO = ['vlog-hainan', 'avatar-talk', 'aigc-demo']
+const COLS = 3
+
+/**
+ * 3 列网格里，一组卡片想从某一行的第一列开始，它前面占掉的「列槽数」必须能被 3 整除。
+ * 差几列，就把紧挨着它的前一张加宽几列补上（1 列 → 加宽成 2 列；2 列 → 加宽成整行）。
+ * 按「当前可见列表」算，所以切换分类后依然成立。
+ */
+function computeWide(list) {
+  const wide = {}
+  const t = list.findIndex((w) => w.slug === ROW_TRIO[0])
+  if (t < 1) return wide
+  if (list[t + 1]?.slug !== ROW_TRIO[1] || list[t + 2]?.slug !== ROW_TRIO[2]) return wide
+  const rem = t % COLS
+  if (rem === 1) wide[list[t - 1].slug] = COLS // 差 2 列 → 前一张独占整行
+  else if (rem === 2) wide[list[t - 1].slug] = 2 // 差 1 列 → 前一张占 2 列
+  return wide
+}
+
 export default function Works({ onOpen }) {
   const [cat, setCat] = useState('ALL')
   const [headRef, headIn] = useReveal()
@@ -12,6 +33,7 @@ export default function Works({ onOpen }) {
 
   const all = worksList || defaultWorks
   const list = cat === 'ALL' ? all : all.filter((w) => w.cat === cat)
+  const wide = computeWide(list)
   const countOf = (c) => (c === 'ALL' ? all.length : all.filter((w) => w.cat === c).length)
 
   return (
@@ -51,7 +73,7 @@ export default function Works({ onOpen }) {
 
         <div ref={gridRef} className={`works-grid reveal${gridIn ? ' in' : ''}`}>
           {list.map((w) => (
-            <WorkCard key={w.slug} w={w} onOpen={onOpen} />
+            <WorkCard key={w.slug} w={w} onOpen={onOpen} span={wide[w.slug] || 1} />
           ))}
         </div>
       </div>
@@ -59,8 +81,9 @@ export default function Works({ onOpen }) {
   )
 }
 
-function WorkCard({ w, onOpen }) {
+function WorkCard({ w, onOpen, span = 1 }) {
   const vid = useRef(null)
+  const wide = span > 1
   const { active, overrides } = useEditor()
 
   // 网页端新增的作品没有现成的转码文件，回落到「待上传」占位图
@@ -89,7 +112,8 @@ function WorkCard({ w, onOpen }) {
 
   return (
     <article
-      className={`work-card${w.vertical ? ' vertical' : ''}`}
+      className={`work-card${w.vertical ? ' vertical' : ''}${wide ? ' wide' : ''}`}
+      style={wide ? { gridColumn: `span ${span}` } : undefined}
       onMouseEnter={enter}
       onMouseLeave={leave}
       onClick={() => {
@@ -98,7 +122,7 @@ function WorkCard({ w, onOpen }) {
     >
       <div className="work-media">
         <span className="work-no">NO.{w.no}</span>
-        <span className="work-ratio">{w.vertical ? '9:16' : '16:9'}</span>
+        <span className="work-ratio">{w.vertical ? '9:16' : wide ? '21:9' : '16:9'}</span>
         <img src={posterSrc} alt={w.title} loading="lazy" />
         {hasVideo && (
           <video ref={vid} src={videoSrc} muted loop playsInline preload="none" />
