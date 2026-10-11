@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 清理 public/media 里不再被引用的旧作品媒体：
-  - preview/*.mp4、poster/*.jpg 里，凡 slug 不在当前 works 列表中的，删除
+  - preview/*.mp4、full/*.mp4、poster/*.jpg 里，凡 slug 不在当前 works 列表中的，删除
+    （full/ 是灯箱播放的完整版，由 scripts/make_full.py 生成，个头最大，更要清）
   - 但**保留 hero 用到的 poster**（Hero.jsx 引用了 poster/dance-dunhuang.jpg）
   - 保留 no-media.jpg、hero-bg-v3.mp4、portrait.jpg 等根目录资源
 先打印待删清单与体积，加 --apply 才真正删除。
@@ -37,7 +38,7 @@ print(f"组件里直接引用的媒体: {sorted(referenced) if referenced else '
 
 # 3) 逐目录清理
 targets = []
-for sub in ("preview", "poster"):
+for sub in ("preview", "poster", "full"):
     d = os.path.join(MEDIA, sub)
     if not os.path.isdir(d):
         continue
@@ -45,7 +46,7 @@ for sub in ("preview", "poster"):
         name, ext = os.path.splitext(fn)
         full = os.path.join(d, fn)
 
-        if sub == "preview":
+        if sub in ("preview", "full"):
             keep = name in slugs
         else:
             # poster：works 的 slug 或组件直接引用的路径（如 poster/dance-dunhuang.jpg）

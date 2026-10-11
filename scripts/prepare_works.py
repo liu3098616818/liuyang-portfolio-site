@@ -2,11 +2,13 @@
 """
 把 D:\作品集\videos 下用户整理好的 5 类作品，按网站现有形式批量转码：
 
-  public/media/preview/<slug>.mp4  —— 卡片 hover + 灯箱播放（最长 40s，保留音轨）
+  public/media/preview/<slug>.mp4  —— 卡片 hover 预览（最长 40s，保留音轨）
   public/media/poster/<slug>.jpg   —— 卡片静止封面（1.5s 取帧，避开黑场）
 
-规格沿用 scripts/prepare_media.py：
-  横屏 960x540 / 竖屏 540x960、fps 30、libx264 crf 31、aac 96k 单声道、+faststart
+注意：灯箱点开播放的**不是**这份预览，而是 scripts/make_full.py 生成的
+  public/media/full/<slug>.mp4     —— 完整不截断、长边 1080、crf 25
+所以这里只是「悬停小预览」，规格刻意压小：
+  横屏 960x540 / 竖屏 540x960、fps 30、libx264 crf 26、aac 96k 单声道、+faststart
 （多数源片是 HEVC，网页播不了，必须转 h264）
 
 已存在的文件默认跳过，加 --force 重转。
@@ -126,7 +128,7 @@ for i, (rel, slug, title, title_en, cat, vertical, note) in enumerate(TARGETS, 1
     if FORCE or not os.path.exists(pv):
         ok = run([FFMPEG, "-y", "-ss", "0", "-i", src, "-t", str(PREVIEW_MAX_SEC),
                   "-vf", scale_filter(vertical),
-                  "-c:v", "libx264", "-preset", "veryfast", "-crf", "31",
+                  "-c:v", "libx264", "-preset", "medium", "-crf", "26",
                   "-c:a", "aac", "-b:a", "96k", "-ac", "1",
                   "-movflags", "+faststart", pv], f"preview {slug}")
     else:
