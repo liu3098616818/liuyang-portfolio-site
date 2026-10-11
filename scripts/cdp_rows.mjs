@@ -115,16 +115,19 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
   report('ALL（全部）', await ev(ROWS))
 
-  // 切到 AIGC 与数字人
-  const clicked = await ev(`(() => {
-    const b = [...document.querySelectorAll('.filter')].find(x => x.textContent.includes('AIGC'))
-    if (!b) return false
-    b.click()
-    return true
-  })()`)
-  console.log('\n点击 AIGC 分类：', clicked)
-  await sleep(2000)
-  report('AIGC 与数字人', await ev(ROWS))
+  // 逐个切到指定分类（默认 AIGC 与数字人、品牌与城市宣传）
+  const cats = (process.env.CATS || 'AIGC,品牌与城市宣传').split(',').map((s) => s.trim())
+  for (const c of cats) {
+    const clicked = await ev(`(() => {
+      const b = [...document.querySelectorAll('.filter')].find(x => x.textContent.includes(${JSON.stringify(c)}))
+      if (!b) return false
+      b.click()
+      return true
+    })()`)
+    console.log(`\n点击分类「${c}」：`, clicked)
+    await sleep(2000)
+    report(c, await ev(ROWS))
+  }
 
   process.exit(0)
 })()

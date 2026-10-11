@@ -32,7 +32,9 @@ SLUG_ORDER = [
     # 京剧 / 古装剧情 / 敦煌舞 / 人物法相天地 / 追踪飞行 / 海南VLOG / 数字人口播 / AIGC成片
     "opera", "drama-guzhuang", "dunhuang", "figure-faxiang",
     "tracking", "vlog-hainan", "avatar-talk", "aigc-demo",
-    "ad-brand", "fashion", "ad-luckin", "ad-xiongan",
+    # 品牌与城市宣传：用户 2026-10-11 指定的排列
+    # 瑞幸咖啡宣传 / 雄安新区宣传 / 广告宣传 / 时尚宣传
+    "ad-luckin", "ad-xiongan", "ad-brand", "fashion",
 ]
 
 with open(MANIFEST, encoding="utf-8") as f:
