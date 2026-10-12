@@ -23,6 +23,11 @@
 }
 
 /* ---------- 图片位 ---------- */
+/* 访客态用的中性类名（避免 DOM 里出现 ed- 痕迹），样式与 .ed-media 一致 */
+.media-slot {
+  position: relative;
+  display: block;
+}
 .ed-media {
   position: relative;
   display: block;

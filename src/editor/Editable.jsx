@@ -164,7 +164,9 @@ export function EditableImage({ k, src, alt = '', className = '' }) {
   const custom = !!overrides.media?.[k]
 
   return (
-    <div className={`ed-media${active ? ' on' : ''}`}>
+    // 访客态用一个中性类名 —— 不能让人在 DOM 里看到 ed-media 这种编辑器痕迹
+    // （布局完全一样：.media-slot 与 .ed-media 的定位样式一致）
+    <div className={active ? 'ed-media on' : 'media-slot'}>
       <img className={className} src={real} alt={alt} />
       {active && (
         <div className="ed-media-bar">

@@ -28,6 +28,12 @@ export function EditorProvider({ children }) {
   const [tick, setTick] = useState(0) // 强制依赖媒体的组件刷新
 
   useEffect(() => {
+    // 一条改动都没有时，不要在访客浏览器里留下 ly_portfolio_overrides_v1 这个空壳
+    // （控制台/开发者工具里看得见，等于告诉别人这里有个修改器）
+    if (!overrides || Object.keys(overrides).length === 0) {
+      clearOverrides()
+      return
+    }
     saveOverrides(overrides)
   }, [overrides])
 
@@ -46,7 +52,12 @@ export function EditorProvider({ children }) {
 
   useEffect(() => {
     try {
-      if (new URLSearchParams(location.search).get('edit') === '1') setActive(true)
+      if (new URLSearchParams(location.search).get('edit') === '1') {
+        setActive(true)
+        // 进完立刻把地址栏里的 ?edit=1 抹掉：
+        // 否则别人看一眼地址栏、或截图/转发链接时就发现了这个入口
+        history.replaceState(null, '', location.pathname)
+      }
     } catch {}
   }, [])
 
