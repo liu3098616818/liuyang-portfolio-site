@@ -7,6 +7,10 @@ import http from 'http'
 
 const PORT = Number(process.env.CDP_PORT || 9333)
 const TARGET = process.argv[2] || 'https://liu3098616818.github.io/liuyang-portfolio-site/'
+// 隐藏入口的参数名与口令：必须与 src/editor/EditorContext.jsx 里的 EDIT_KEY / EDIT_TOKEN 一致
+const KEY = process.env.EDIT_KEY || 'ref'
+const TOKEN = process.env.EDIT_TOKEN || ''
+const join = (base, qs) => base + (base.includes('?') ? '&' : '?') + qs
 
 const get = (p) =>
   new Promise((res, rej) => {
@@ -118,13 +122,18 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
   console.log('\n===== 按下 Ctrl+Shift+E 之后 =====')
   for (const [k, v] of Object.entries(after || {})) console.log(`  ${k}: ${JSON.stringify(v)}`)
 
-  // 退出编辑，再试另一条路径：网址加 ?edit=1
-  await send('Input.dispatchKeyEvent', {
-    type: 'rawKeyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27,
-  })
-  await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 })
-  await sleep(1200)
-  await send('Page.navigate', { url: TARGET + (TARGET.includes('?') ? '&' : '?') + 'edit=1' })
+  // 旧的公开入口必须已经失效
+  await send('Page.navigate', { url: join(TARGET, 'edit=1') })
+  await sleep(4000)
+  const oldWay = await ev(`(() => ({
+    面板出现: !!document.querySelector('.edp'),
+    可编辑文字块: document.querySelectorAll('.ed-text').length,
+  }))()`)
+  console.log('\n===== 旧网址 ?edit=1（应当失效）=====')
+  for (const [k, v] of Object.entries(oldWay || {})) console.log(`  ${k}: ${JSON.stringify(v)}`)
+
+  // 专属隐藏网址
+  await send('Page.navigate', { url: join(TARGET, `${KEY}=${TOKEN}`) })
   await sleep(4000)
   const viaUrl = await ev(`(() => ({
     面板出现: !!document.querySelector('.edp'),
@@ -132,7 +141,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
     地址栏是否已抹掉参数: location.search === '',
     当前地址: location.href.replace(location.origin, ''),
   }))()`)
-  console.log('\n===== 用 ?edit=1 打开之后 =====')
+  console.log(`\n===== 隐藏网址 ?${KEY}=${TOKEN} =====`)
   for (const [k, v] of Object.entries(viaUrl || {})) console.log(`  ${k}: ${JSON.stringify(v)}`)
 
   process.exit(0)

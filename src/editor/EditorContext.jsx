@@ -20,6 +20,15 @@ import { works as defaultWorks, baseStyles } from '../data/site.js'
 const Ctx = createContext(null)
 export const useEditor = () => useContext(Ctx)
 
+/**
+ * 隐藏入口的密令 —— 只有带这个参数的网址才能唤起修改器。
+ *   专属网址：  .../liuyang-portfolio-site/?ref=3fb305a6551679afd32b5662
+ * 参数名故意用 ref（像个普通的渠道统计参数），口令是随机串，猜不出来。
+ * 要换网址时：改下面这一行 + 重新部署即可。
+ */
+const EDIT_KEY = 'ref'
+const EDIT_TOKEN = '3fb305a6551679afd32b5662'
+
 const pad = (n) => String(n).padStart(2, '0')
 
 export function EditorProvider({ children }) {
@@ -37,7 +46,7 @@ export function EditorProvider({ children }) {
     saveOverrides(overrides)
   }, [overrides])
 
-  /* 进入方式：Ctrl + Shift + E，或网址加 ?edit=1 */
+  /* 进入方式：Ctrl + Shift + E，或专属隐藏网址（见上方 EDIT_TOKEN） */
   useEffect(() => {
     const onKey = (e) => {
       if (e.ctrlKey && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
@@ -52,10 +61,10 @@ export function EditorProvider({ children }) {
 
   useEffect(() => {
     try {
-      if (new URLSearchParams(location.search).get('edit') === '1') {
+      // 旧的 ?edit=1 已作废 —— 那种一眼能猜到的参数等于没锁
+      if (new URLSearchParams(location.search).get(EDIT_KEY) === EDIT_TOKEN) {
         setActive(true)
-        // 进完立刻把地址栏里的 ?edit=1 抹掉：
-        // 否则别人看一眼地址栏、或截图/转发链接时就发现了这个入口
+        // 进完立刻抹掉参数：截图、转发链接、浏览器历史里都不留痕迹
         history.replaceState(null, '', location.pathname)
       }
     } catch {}
